@@ -1,4 +1,4 @@
-const RELEASE_API = 'https://api.github.com/repos/JR-Academy-AI/jobhunter-releases/releases/latest';
+const RELEASE_API = 'https://api.github.com/repos/JR-Academy-AI/jobhunter-releases/releases?per_page=10';
 
 const $ = (id) => document.getElementById(id);
 const formatBytes = (bytes) => {
@@ -22,7 +22,7 @@ function findAsset(assets, platform) {
   });
 }
 
-function enableDownload(platform, asset, version) {
+function enableDownload(platform, asset, version, isBeta) {
   const link = $(platform === 'mac' ? 'mac-download' : 'windows-download');
   const meta = $(platform === 'mac' ? 'mac-meta' : 'windows-meta');
   if (!asset) {
@@ -32,8 +32,8 @@ function enableDownload(platform, asset, version) {
   link.href = asset.browser_download_url;
   link.removeAttribute('aria-disabled');
   link.classList.remove('is-disabled');
-  link.textContent = platform === 'mac' ? '下载 macOS 版' : '下载 Windows 版';
-  meta.textContent = `${version} · ${formatBytes(asset.size)} · GitHub production release`;
+  link.textContent = platform === 'mac' ? `下载 macOS ${isBeta ? '内测版' : '版'}` : `下载 Windows ${isBeta ? '内测版' : '版'}`;
+  meta.textContent = `${version} · ${formatBytes(asset.size)} · ${isBeta ? 'unsigned beta' : 'production release'}`;
 }
 
 async function loadRelease() {
@@ -42,12 +42,18 @@ async function loadRelease() {
   try {
     const response = await fetch(RELEASE_API, { headers: { Accept: 'application/vnd.github+json' } });
     if (!response.ok) throw new Error(`GitHub API ${response.status}`);
-    const release = await response.json();
+    const releases = await response.json();
+    const release = releases.find((item) => {
+      if (item.draft) return false;
+      const assets = Array.isArray(item.assets) ? item.assets : [];
+      return findAsset(assets, 'mac') || findAsset(assets, 'windows');
+    });
+    if (!release) throw new Error('No downloadable release');
     const assets = Array.isArray(release.assets) ? release.assets : [];
     const mac = findAsset(assets, 'mac');
     const windows = findAsset(assets, 'windows');
-    enableDownload('mac', mac, release.tag_name);
-    enableDownload('windows', windows, release.tag_name);
+    enableDownload('mac', mac, release.tag_name, release.prerelease);
+    enableDownload('windows', windows, release.tag_name, release.prerelease);
 
     const preferredAsset = recommended === 'windows' ? windows : mac;
     const fallbackAsset = mac || windows;
@@ -56,9 +62,12 @@ async function loadRelease() {
     button.classList.remove('is-loading');
     if (selected) {
       button.href = selected.browser_download_url;
-      button.querySelector('strong').textContent = recommended === 'windows' && windows ? '下载 Windows 版' : '下载 macOS 版';
+      const platformName = recommended === 'windows' && windows ? 'Windows' : 'macOS';
+      button.querySelector('strong').textContent = `下载 ${platformName} ${release.prerelease ? '内测版' : '版'}`;
       button.querySelector('small').textContent = `${release.tag_name} · ${formatBytes(selected.size)}`;
-      $('release-status').textContent = `最新正式版本 ${release.tag_name}，由 GitHub production release 提供。`;
+      $('release-status').textContent = release.prerelease
+        ? `当前为 ${release.tag_name} 未签名内测版，首次打开可能出现系统安全提示。`
+        : `最新正式版本 ${release.tag_name}，由 GitHub production release 提供。`;
     } else {
       button.href = release.html_url;
       button.querySelector('strong').textContent = '查看最新发布状态';
