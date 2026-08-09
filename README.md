@@ -4,10 +4,10 @@
 
 ## 下载
 
-到 [Releases](../../releases) 拿最新版本。
+- [打开求职匠下载页](https://jr-academy-ai.github.io/jobhunter-releases/)
+- [查看全部 Releases](../../releases)
 
-- **macOS (Apple Silicon)** — `求职匠.app.tar.gz`
-- macOS (Intel) / Windows — 还没有，见下方「已知限制」
+下载页会读取 production Release 的真实资产：有 `.dmg` 才开放 macOS 按钮，有 `.exe` 才开放 Windows 按钮，不会展示无法下载的假入口。
 
 ## 装完第一次打开
 
@@ -31,5 +31,5 @@ App 每次启动会静默查一次更新，装好后提示重启，**不会自�
 ## 已知限制
 
 - 未签名未公证（首次打开要右键 → 打开）
-- 只有 Apple Silicon 版；Intel Mac 与 Windows 待补
+- 当前可用平台与架构以[下载页](https://jr-academy-ai.github.io/jobhunter-releases/)显示为准
 - 需要本机装 [Claude Code](https://claude.com/claude-code) 才能生成简历
