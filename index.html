@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="下载求职匠桌面版：AI 私人求职工作台，支持 macOS 与 Windows。" />
+    <meta name="theme-color" content="#f6f8ff" />
+    <title>下载求职匠 · macOS / Windows</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="求职匠下载首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><path d="M16 3.5 27 9.8v12.4L16 28.5 5 22.2V9.8L16 3.5Z"/><path d="m10.5 14.2 5.5-3.1 5.5 3.1v6.2L16 23.5l-5.5-3.1v-6.2Z"/><circle cx="16" cy="17.3" r="2.5"/></svg>
+        </span>
+        <span><strong>求职匠</strong><small>AI 私人求职工作台</small></span>
+      </a>
+      <a class="header-link" href="https://github.com/JR-Academy-AI/jobhunter-releases/releases">历史版本</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><i></i> DESKTOP APP</span>
+          <h1>把求职资料、岗位分析和每一份简历，放在自己的电脑里。</h1>
+          <p>求职匠会从你的真实经历出发，为不同岗位生成可追溯的简历版本。资料默认只保存在本机。</p>
+
+          <div class="primary-download">
+            <a id="recommended-download" class="download-button is-loading" href="https://github.com/JR-Academy-AI/jobhunter-releases/releases/latest">
+              <span class="platform-icon" aria-hidden="true">↓</span>
+              <span><strong>正在查找最新版本…</strong><small>macOS / Windows</small></span>
+            </a>
+            <p id="release-status" role="status">正在读取 production release…</p>
+          </div>
+
+          <div class="trust-row">
+            <span><b>✓</b> 本机资料库</span>
+            <span><b>✓</b> 可追溯简历</span>
+            <span><b>✓</b> 自动更新</span>
+          </div>
+        </div>
+
+        <div class="product-preview" aria-label="求职匠应用界面示意图">
+          <div class="window-bar"><i></i><i></i><i></i><span>求职匠</span></div>
+          <div class="app-shell">
+            <aside>
+              <div class="mini-brand"></div>
+              <span class="nav-line active"></span>
+              <span class="nav-line"></span>
+              <span class="nav-line"></span>
+              <span class="nav-line"></span>
+              <span class="nav-line short"></span>
+            </aside>
+            <div class="app-content">
+              <div class="preview-head"><span></span><span></span></div>
+              <div class="preview-flow"><i></i><b></b><i></i><b></b><i></i></div>
+              <div class="preview-grid">
+                <div class="preview-card large"><small></small><strong></strong><p></p><p></p><p></p></div>
+                <div class="preview-stack"><div></div><div></div><div></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="floating-proof"><span>✓</span><div><strong>证据已核对</strong><small>每句话都有出处</small></div></div>
+        </div>
+      </section>
+
+      <section class="platform-section" aria-labelledby="platform-title">
+        <div class="section-heading">
+          <span>选择你的电脑</span>
+          <h2 id="platform-title">macOS 与 Windows</h2>
+          <p>下载按钮始终连接到 production 仓库的最新正式版本。</p>
+        </div>
+
+        <div class="platform-grid">
+          <article class="platform-card" data-platform="mac">
+            <div class="platform-card-head">
+              <span class="os-mark apple" aria-hidden="true">●</span>
+              <div><h3>macOS</h3><p>Apple Silicon + Intel 通用版</p></div>
+              <em>Universal</em>
+            </div>
+            <ul><li>macOS 12 或更高版本</li><li>一个安装包兼容 M 系列与 Intel</li><li>下载 DMG 后拖入“应用程序”</li></ul>
+            <a id="mac-download" class="secondary-download is-disabled" aria-disabled="true">Mac 版本准备中</a>
+            <p id="mac-meta" class="asset-meta">等待 production asset</p>
+          </article>
+
+          <article class="platform-card" data-platform="windows">
+            <div class="platform-card-head">
+              <span class="os-mark windows" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <div><h3>Windows</h3><p>64 位安装版</p></div>
+              <em>x64</em>
+            </div>
+            <ul><li>Windows 10 / 11</li><li>适用于 Intel 与 AMD 64 位电脑</li><li>下载 EXE 后按安装向导完成</li></ul>
+            <a id="windows-download" class="secondary-download is-disabled" aria-disabled="true">Windows 版本准备中</a>
+            <p id="windows-meta" class="asset-meta">等待 production asset</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="value-section">
+        <article><span>01</span><h3>一份真实资料库</h3><p>经历、项目和成果只维护一次，之后每份岗位简历都从这里生成。</p></article>
+        <article><span>02</span><h3>岗位版本可追溯</h3><p>看见每句话来自哪里、相对基准简历改了什么，避免无意夸大。</p></article>
+        <article><span>03</span><h3>随时换模板导出</h3><p>内容与排版分开管理，切换模板不重新分析，也不消耗 AI token。</p></article>
+      </section>
+
+      <section class="install-note">
+        <div><span>!</span><div><h2>首次打开提示</h2><p>如果当前版本尚未完成平台代码签名，macOS 或 Windows 可能显示“无法验证开发者 / 未知发布者”。下载区会如实标明版本状态。</p></div></div>
+        <a href="https://github.com/JR-Academy-AI/jobhunter-releases#装完第一次打开">查看安装说明 →</a>
+      </section>
+    </main>
+
+    <footer>
+      <div><strong>求职匠</strong><span>你的资料，留在你的电脑。</span></div>
+      <nav><a href="https://github.com/JR-Academy-AI/jobhunter-releases/releases">Releases</a><a href="https://github.com/JR-Academy-AI/jobhunter-releases">发布仓库</a></nav>
+    </footer>
+  </body>
+</html>
