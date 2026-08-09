@@ -7,12 +7,14 @@
 - [打开求职匠下载页](https://jr-academy-ai.github.io/jobhunter-releases/)
 - [查看全部 Releases](../../releases)
 
-下载页会读取 production Release 的真实资产：有 `.dmg` 才开放 macOS 按钮，有 `.exe` 才开放 Windows 按钮，不会展示无法下载的假入口。
+下载页会读取发行仓里最新且真的带安装包的版本：有 `.dmg` 才开放 macOS 按钮，有 `.exe` 才开放 Windows 按钮。内测版会明确标注，不会伪装成正式版。
 
 ## 装完第一次打开
 
 macOS 会提示「无法验证开发者」——因为这个版本**还没做代码签名和公证**。
 右键点 App → 打开 → 再点一次「打开」即可。（正式发行前会补上签名。）
+
+Windows 可能显示 Microsoft Defender SmartScreen。确认下载来源是本仓库后，点「更多信息」→「仍要运行」。
 
 ## 自动更新
 
