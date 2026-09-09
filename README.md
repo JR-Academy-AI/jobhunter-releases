@@ -7,7 +7,7 @@
 - [打开求职匠下载页](https://jr-academy-ai.github.io/jobhunter-releases/)
 - [查看全部 Releases](../../releases)
 
-下载页会读取发行仓里最新且真的带安装包的版本：有 `.dmg` 才开放 macOS 按钮，有 `.exe` 才开放 Windows 按钮。内测版会明确标注，不会伪装成正式版。
+下载页读取 GitHub 正式 Latest 版本：有 `.dmg` 才开放 macOS 按钮，有 `.exe` 才开放 Windows 按钮。历史版本和内测版请到 Releases 查看。
 
 ## 装完第一次打开
 

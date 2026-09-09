@@ -1,4 +1,4 @@
-const RELEASE_API = 'https://api.github.com/repos/JR-Academy-AI/jobhunter-releases/releases?per_page=10';
+const RELEASE_API = 'https://api.github.com/repos/JR-Academy-AI/jobhunter-releases/releases/latest';
 
 const $ = (id) => document.getElementById(id);
 const formatBytes = (bytes) => {
@@ -42,13 +42,8 @@ async function loadRelease() {
   try {
     const response = await fetch(RELEASE_API, { headers: { Accept: 'application/vnd.github+json' } });
     if (!response.ok) throw new Error(`GitHub API ${response.status}`);
-    const releases = await response.json();
-    const release = releases.find((item) => {
-      if (item.draft) return false;
-      const assets = Array.isArray(item.assets) ? item.assets : [];
-      return findAsset(assets, 'mac') || findAsset(assets, 'windows');
-    });
-    if (!release) throw new Error('No downloadable release');
+    const release = await response.json();
+    if (!release || release.draft || release.prerelease) throw new Error('No stable Latest release');
     const assets = Array.isArray(release.assets) ? release.assets : [];
     const mac = findAsset(assets, 'mac');
     const windows = findAsset(assets, 'windows');
